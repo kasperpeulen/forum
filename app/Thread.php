@@ -20,6 +20,8 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Query\Builder|\App\Thread whereUpdatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Thread whereUserId($value)
  * @mixin \Eloquent
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Reply[] $replies
+ * @property-read \App\User $user
  */
 class Thread extends Model
 {

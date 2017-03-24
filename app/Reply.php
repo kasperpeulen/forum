@@ -20,6 +20,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Query\Builder|\App\Reply whereUpdatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Reply whereUserId($value)
  * @mixin \Eloquent
+ * @property-read \App\User $user
  */
 class Reply extends Model
 {
