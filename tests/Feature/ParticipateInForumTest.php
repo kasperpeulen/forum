@@ -35,7 +35,7 @@ class ParticipateInForum extends TestCase
         $this->be($user = factory(User::class)->create());
 
         $thread = factory(Thread::class)->create();
-        $reply = factory(Reply::class)->create();
+        $reply = factory(Reply::class)->make();
 
         $this->post($thread->path().'/replies', $reply->toArray());
 
