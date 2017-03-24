@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Reply;
 use App\Thread;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
@@ -13,14 +14,23 @@ class ReadThreadTest extends TestCase
     use DatabaseMigrations;
 
     /**
+     * @var Thread
+     */
+    public $thread;
+
+    protected function setUp()
+    {
+        parent::setUp();
+        $this->thread = factory(Thread::class)->create();
+    }
+
+    /**
      * @test
      */
     public function a_user_can_view_all_threads()
     {
-        $thread = factory(Thread::class)->create();
-
         $response = $this->get('/threads');
-        $response->assertSee($thread->title);
+        $response->assertSee($this->thread->title);
 
     }
 
@@ -29,9 +39,18 @@ class ReadThreadTest extends TestCase
      */
     public function a_user_can_view_single_thread()
     {
-        $thread = factory(Thread::class)->create();
+        $response = $this->get($this->thread->path());
+        $response->assertSee($this->thread->title);
+    }
 
-        $response = $this->get('/threads/' . $thread->id);
-        $response->assertSee($thread->title);
+    /**
+     * @test
+     */
+    public function a_user_can_read_replies_that_are_associated_with_a_thread()
+    {
+        $reply = factory(Reply::class)->create(['thread_id' => $this->thread->id]);
+
+        $response = $this->get($this->thread->path());
+        $response->assertSee($reply->body);
     }
 }
