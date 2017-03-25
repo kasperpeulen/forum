@@ -21,3 +21,5 @@ Route::get('/home', 'HomeController@index');
 Route::resource('threads', 'ThreadController');
 
 Route::post('/threads/{thread}/replies', 'ReplyController@store');
+
+// test
