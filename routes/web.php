@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return redirect('/threads');
-});
+Route::get('/', 'ThreadController@index');
 
 Auth::routes();
 Route::get('/home', 'HomeController@index');
@@ -21,5 +19,3 @@ Route::get('/home', 'HomeController@index');
 Route::resource('threads', 'ThreadController');
 
 Route::post('/threads/{thread}/replies', 'ReplyController@store');
-
-// test
