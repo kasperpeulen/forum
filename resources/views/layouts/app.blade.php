@@ -44,6 +44,7 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
                         <li><a href="/threads/create">Create thread</a></li>
+                        <li><a href="https://github.com/kasperpeulen/forum">Github source code</a></li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
