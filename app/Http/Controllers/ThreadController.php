@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Thread;
+use App\User;
 use Illuminate\Http\Request;
 
 class ThreadController extends Controller
@@ -48,7 +49,7 @@ class ThreadController extends Controller
         ]);
 
         $thread = Thread::create([
-            'user_id' => auth()->id(),
+                'user_id' => auth()->id(),
             'title' => request('title'),
             'body' => request('body'),
         ]);
@@ -77,7 +78,11 @@ class ThreadController extends Controller
      */
     public function edit(Thread $thread)
     {
-        return view('threads.edit', compact('thread'));
+        /** @var User $user */
+        $user = User::find(auth()->id());
+        if ($user->can('edit', $thread)) {
+            return view('threads.edit', compact('thread'));
+        }
     }
 
     /**

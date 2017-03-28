@@ -10,12 +10,16 @@
                         {{$thread->title}}
                         by <a href="#">{{$thread->user->name}}</a>
                         <div class="pull-right">
+                            @can('update', $thread)
                             <a href="{{$thread->path() . '/edit'}}" class="btn btn-default btn-xs">Edit</a>
+                            @endcan
+                            @can('delete', $thread)
                             <form action="{{$thread->path()}}" method="POST" style="display:inline;">
                                 {{method_field('DELETE')}}
                                 {{csrf_field()}}
                                 <button type="submit" class="btn btn-default btn-xs">Delete</button>
                             </form>
+                            @endcan
                         </div>
                     </div>
 
