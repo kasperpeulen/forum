@@ -80,7 +80,7 @@ class ThreadController extends Controller
     {
         /** @var User $user */
         $user = User::find(auth()->id());
-        if ($user->can('edit', $thread)) {
+        if ($user->can('update', $thread)) {
             return view('threads.edit', compact('thread'));
         }
     }
