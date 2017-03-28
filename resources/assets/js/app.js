@@ -13,8 +13,12 @@ require('./bootstrap');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
+
+
 Vue.component('example', require('./components/Example.vue'));
 
 const app = new Vue({
     el: '#app'
 });
+
+$('div.alert').not('.alert-important').delay(3000).fadeOut(350);

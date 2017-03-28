@@ -4,6 +4,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
+
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         {{$thread->title}}
@@ -40,6 +41,7 @@
                         <div class="form-group">
                             <textarea cols="5" class="form-control" name="body" id="body" placeholder="Have something to say?"></textarea>
                         </div>
+                        @include('layouts.errors')
                         <button type="submit" class="btn btn-primary">Post</button>
                     </form>
                 @else

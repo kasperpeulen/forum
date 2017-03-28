@@ -21,6 +21,7 @@
                                 <label for="body" class="control-label">Body: </label>
                                     <textarea class="form-control" id="body" name="body" rows="8"></textarea>
                             </div>
+                            @include('layouts.errors')
                             <button type="submit" class="btn btn-primary">Publish</button>
                         </form>
                     </div>

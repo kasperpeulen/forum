@@ -53,6 +53,8 @@ class ThreadController extends Controller
             'body' => request('body'),
         ]);
 
+        flash('Thread updated sucessfully.', 'success');
+
         return redirect($thread->path());
     }
 
@@ -96,6 +98,8 @@ class ThreadController extends Controller
         $thread->body = $request->get('body');
         $thread->save();
 
+        flash('Thread updated sucessfully.', 'success');
+
         return redirect($thread->path());
     }
 
@@ -108,6 +112,7 @@ class ThreadController extends Controller
     public function destroy(Thread $thread)
     {
         $thread->delete();
+        flash('Thread deleted sucessfully.', 'success');
 
         return redirect()->home();
     }
