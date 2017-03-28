@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/', 'ThreadController@index');
+Route::get('/', 'ThreadController@index')->name('home');
 
 Auth::routes();
 Route::get('/home', 'HomeController@index');

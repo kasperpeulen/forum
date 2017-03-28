@@ -8,10 +8,19 @@
                     <div class="panel-heading">
                         {{$thread->title}}
                         by <a href="#">{{$thread->user->name}}</a>
+                        <div class="pull-right">
+                            <a href="{{$thread->path() . '/edit'}}" class="btn btn-default btn-xs">Edit</a>
+                            <form action="{{$thread->path()}}" method="POST" style="display:inline;">
+                                {{method_field('DELETE')}}
+                                {{csrf_field()}}
+                                <button type="submit" class="btn btn-default btn-xs">Delete</button>
+                            </form>
+                        </div>
                     </div>
 
                     <div class="panel-body">
                         {{$thread->body}}
+
                     </div>
                 </div>
             </div>

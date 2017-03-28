@@ -42,6 +42,11 @@ class ThreadController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request, [
+            'title' => 'required',
+            'body' => 'required',
+        ]);
+
         $thread = Thread::create([
             'user_id' => auth()->id(),
             'title' => request('title'),
@@ -70,7 +75,7 @@ class ThreadController extends Controller
      */
     public function edit(Thread $thread)
     {
-        //
+        return view('threads.edit', compact('thread'));
     }
 
     /**
@@ -82,7 +87,16 @@ class ThreadController extends Controller
      */
     public function update(Request $request, Thread $thread)
     {
-        //
+        $this->validate($request, [
+            'title' => 'required',
+            'body' => 'required',
+        ]);
+
+        $thread->title = $request->get('title');
+        $thread->body = $request->get('body');
+        $thread->save();
+
+        return redirect($thread->path());
     }
 
     /**
@@ -93,6 +107,8 @@ class ThreadController extends Controller
      */
     public function destroy(Thread $thread)
     {
-        //
+        $thread->delete();
+
+        return redirect()->home();
     }
 }
