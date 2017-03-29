@@ -14,12 +14,12 @@
 
                             <div class="form-group">
                                 <label for="title">Title: </label>
-                                <input type="text" class="form-control" name="title" id="title">
+                                <input type="text" class="form-control" name="title" id="title" value="{{old('title')}}" required>
                             </div>
 
                             <div class="form-group">
                                 <label for="body" class="control-label">Body: </label>
-                                    <textarea class="form-control" id="body" name="body" rows="8"></textarea>
+                                    <textarea class="form-control" id="body" name="body" rows="8" required>{{old('body')}}</textarea>
                             </div>
                             @include('layouts.errors')
                             <button type="submit" class="btn btn-primary">Publish</button>
