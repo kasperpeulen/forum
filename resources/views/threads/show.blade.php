@@ -7,12 +7,12 @@
 
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        {{$thread->title}}
-                        by <a href="#">{{$thread->user->name}}</a>
+                        {{$thread->title}} by <a href="#">{{$thread->user->name}}</a>
                         <div class="pull-right">
                             @can('update', $thread)
                             <a href="{{$thread->path() . '/edit'}}" class="btn btn-default btn-xs">Edit</a>
                             @endcan
+
                             @can('delete', $thread)
                             <form action="{{$thread->path()}}" method="POST" style="display:inline;">
                                 {{method_field('DELETE')}}
@@ -55,6 +55,5 @@
                 @endif
             </div>
         </div>
-
     </div>
 @endsection
