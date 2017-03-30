@@ -1,4 +1,3 @@
-
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -24,9 +23,10 @@ const app = new Vue({
         body: '',
     },
     methods: {
-        async addReply(url) {
-            await axios.post(url, this.$data);
-            this.body = '';
+        addReply(url) {
+            axios.post(url, this.$data).then(() => {
+                this.body = '';
+            });
         }
     }
 });
