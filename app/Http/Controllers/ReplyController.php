@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\ReplyAdded;
 use App\Reply;
 use App\Thread;
 use Illuminate\Http\Request;
@@ -10,7 +11,7 @@ class ReplyController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('auth')->only('store');
     }
 
     /**
@@ -18,9 +19,9 @@ class ReplyController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Thread $thread)
     {
-        //
+        return $thread->replies->load('user');
     }
 
     /**
@@ -39,7 +40,7 @@ class ReplyController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Thread $thread)
+    public function store(Request $request, Thread $thread)
     {
         $this->validate($request, [
             'body' => 'required',
@@ -49,6 +50,7 @@ class ReplyController extends Controller
             'user_id' => auth()->id(),
 
         ]);
+        event(new ReplyAdded($thread));
         return back();
     }
 

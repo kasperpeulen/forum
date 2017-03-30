@@ -15,10 +15,20 @@ require('./bootstrap');
 
 
 
-Vue.component('example', require('./components/Example.vue'));
+Vue.component('reply', require('./components/Reply.vue'));
+Vue.component('replies', require('./components/Replies.vue'));
 
 const app = new Vue({
-    el: '#app'
+    el: '#app',
+    data: {
+        body: '',
+    },
+    methods: {
+        async addReply(url) {
+            await axios.post(url, this.$data);
+            this.body = '';
+        }
+    }
 });
 
 $('div.alert').not('.alert-important').delay(3000).fadeOut(350);

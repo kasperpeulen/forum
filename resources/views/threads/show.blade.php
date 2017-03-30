@@ -32,18 +32,16 @@
         </div>
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
-                @foreach($thread->replies as $reply)
-                    @include('threads.reply')
-                @endforeach
+                <replies thread="{{$thread->id}}"></replies>
             </div>
         </div>
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 @if(auth()->check())
-                    <form action="{{$thread->path() . '/replies'}}" method="post" role="form">
+                    <form @submit.prevent="addReply('{{$thread->path() . '/replies'}}')" method="post" role="form">
                         {{csrf_field()}}
                         <div class="form-group">
-                            <textarea cols="5" class="form-control" name="body" id="body" placeholder="Have something to say?"></textarea>
+                            <textarea cols="5" v-model="body" class="form-control" name="body" id="body" placeholder="Have something to say?"></textarea>
                         </div>
                         @include('layouts.errors')
                         <button type="submit" class="btn btn-primary">Post</button>
